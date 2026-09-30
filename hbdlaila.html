@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Seng 💖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ffe1e8 0%, #ffc0cb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-cute {
+            font-family: 'Caveat', cursive;
+        }
+
+        /* Animasi Transisi Halaman */
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); display: none; }
+        }
+
+        /* Animasi Hati Terbang */
+        .heart-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -100px;
+            font-size: 24px;
+            color: #ff4d6d;
+            animation: floatUp 5s linear infinite;
+            text-shadow: 0 0 5px rgba(255, 77, 109, 0.5);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Tombol getar jika password salah */
+        .shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4 relative">
+
+    <!-- SCREEN 1: PASSWORD LOGIN -->
+    <div id="loginScreen" class="bg-white/80 backdrop-blur-md rounded-3xl p-8 max-w-sm w-full shadow-[0_10px_40px_-10px_rgba(255,105,180,0.4)] text-center relative z-10 border-2 border-pink-200">
+        <div class="text-5xl mb-4 animate-bounce">💌</div>
+        <h1 class="text-3xl font-cute text-pink-600 mb-2">Halooo Sengkuu</h1>
+        <p class="text-gray-600 mb-6 text-sm">Ada sesuatu nih seng, tapi masukin password sek, cluenya Tanggal jadian kita tanpa spasi contoh: 121222 💖</p>
+        
+        <div class="mb-4">
+            <input type="password" id="passwordInput" placeholder="Passwordnya apa hayo?" 
+                class="w-full px-4 py-3 rounded-2xl border-2 border-pink-100 bg-pink-50 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-200 transition-all text-center font-bold text-gray-700">
+        </div>
+        
+        <p id="errorMessage" class="text-red-500 text-xs mb-4 hidden font-semibold">Ih salahhh, coba inget-inget lagi tanggal jadian kita! 🥺</p>
+        
+        <button id="loginBtn" onclick="checkPassword()" 
+            class="w-full bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-bold py-3 px-4 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            Buka Suratnya 🔓
+        </button>
+    </div>
+
+    <!-- SCREEN 2: BIRTHDAY CELEBRATION -->
+    <div id="celebrationScreen" class="hidden w-full max-w-2xl relative z-10">
+        <div class="bg-white/90 backdrop-blur-lg rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_-10px_rgba(255,105,180,0.5)] border-4 border-pink-200 text-center relative overflow-hidden">
+            
+            <!-- Pita Hiasan Sudut -->
+            <div class="absolute -top-12 -left-12 text-8xl opacity-20">🎀</div>
+            <div class="absolute -bottom-12 -right-12 text-8xl opacity-20 transform rotate-180">🎀</div>
+
+            <!-- Kartu Ucapan -->
+            <div class="relative z-10">
+                <div class="text-5xl mb-2">🎉🎂👑</div>
+                <h1 class="text-4xl md:text-5xl font-cute text-rose-500 mb-2 leading-tight">Selamat Ulang Tahun,</h1>
+                <h2 class="text-3xl md:text-4xl font-cute text-pink-600 mb-6 font-bold">Laila Indah Anggraini! 💖</h2>
+                
+                <div class="bg-pink-50 p-6 md:p-8 rounded-3xl border border-pink-100 shadow-inner mb-8 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white px-4 py-1 rounded-full border border-pink-200 text-xs font-bold text-pink-400 shadow-sm">
+                        surat suratan buat anake bu martinem
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-sm md:text-base text-left">
+                          HAPPY BIRTHDAY SAYANGKUUUUU🥳<br><br>
+                     Sayang selamat bertambah dewasaaa, semogaa di umurmu sekarang ini kamu bisa menjadi pribadi yang semakin baik, semakin kuat, dan semakin bahagiaaa. Semoga semua hal yang kamu semogakan, satu per satu bisa terwujud di waktu yang paling tepat. Semoga langkahmu selalu dimudahkan, rezekimu dilancarkan,
+Aku juga berharap di umurmu yang sekarang, kamu bisa lebih banyak menemukan alasan untuk tersenyum.
+Terima kasih yaa sayang, sudah hadir di hidup aku, sudah mau menemani aku sampai sejauh ini, sudah menjadi seseorang yang begitu berarti buat aku. Aku mungkin nggak selalu bisa menjadi pasangan yang sempurna, tapi aku mau terus belajar menjadi seseorang yang bisa menemani kamu, mendukung kamu, dan ada di samping kamu dalam keadaan apapun.
+Semoga panjang umur yaa sayangkuuu, sehat selalu, bahagia selalu, dan jangan lupa untuk selalu sayang sama diri kamu sendiri. Aku pengen lihat kamu tumbuh, mengejar semua mimpi kamu, dan mencapai hal-hal yang selama ini kamu inginkan. aku juga berharap semoga di banyak ulang tahunmu berikutnya, semoga tetep aku yang ngucapin pertama ya sayang
+Sekali lagi, selamat ulang tahun sayangkuu. Semoga umur baru ini membawa banyak cerita indah buat kamu. I love youuu, more than you know❤️❤️❤️
+                    </p>
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-gray-500 text-sm">Siapa yg Buat?</p>
+                    <p class="font-cute text-2xl text-rose-500 mt-1">Galih 💌</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wadah animasi hati -->
+        <div id="heartsContainer" class="heart-container"></div>
+    </div>
+
+    <script>
+        // ==========================================
+        // PENGATURAN PASSWORD ADA DI SINI
+        // Ubah kata 'sayangku' di bawah ini dengan 
+        // password yang kamu mau. Harus huruf kecil ya (jika menggunakan toLowerCase()).
+        // ==========================================
+        const SECRET_PASSWORD = '101222'; 
+
+        // Fungsi mengecek password
+        function checkPassword() {
+            const inputElement = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginScreen = document.getElementById('loginScreen');
+            const celebrationScreen = document.getElementById('celebrationScreen');
+            
+            // Ambil input user, hilangkan spasi depan/belakang, ubah ke huruf kecil
+            const userPassword = inputElement.value.trim().toLowerCase();
+
+            if (userPassword === SECRET_PASSWORD) {
+                // Password Benar!
+                
+                // Hilangkan error (jika sebelumnya ada)
+                errorMessage.classList.add('hidden');
+                
+                // Animasi keluar halaman login
+                loginScreen.classList.add('fade-out');
+                
+                // Tunggu sebentar, lalu munculkan halaman kejutan
+                setTimeout(() => {
+                    loginScreen.classList.add('hidden');
+                    loginScreen.classList.remove('fade-out');
+                    
+                    celebrationScreen.classList.remove('hidden');
+                    celebrationScreen.classList.add('fade-in');
+                    
+                    // Mulai hujan hati!
+                    startHeartAnimation();
+                }, 500);
+
+            } else {
+                // Password Salah!
+                errorMessage.classList.remove('hidden');
+                
+                // Animasi getar pada tombol
+                loginBtn.classList.remove('shake');
+                void loginBtn.offsetWidth; // trigger reflow untuk me-restart animasi
+                loginBtn.classList.add('shake');
+                
+                // Kosongkan input biar dicoba lagi
+                inputElement.value = '';
+                inputElement.focus();
+            }
+        }
+
+        // Tambah event listener jika menekan tombol 'Enter' pada keyboard
+        document.getElementById('passwordInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Fungsi untuk membuat hujan hati di background
+        function startHeartAnimation() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['❤️', '💖', '💗', '💓', '💕', '💘'];
+            
+            // Buat hati baru setiap 300 milidetik
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Pilih emoji hati secara acak
+                heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                
+                // Posisi X acak (kiri ke kanan)
+                heart.style.left = Math.random() * 100 + 'vw';
+                
+                // Durasi animasi acak agar tidak seragam (antara 4s - 8s)
+                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                
+                // Ukuran acak
+                const size = Math.random() * 20 + 15; // 15px - 35px
+                heart.style.fontSize = size + 'px';
+                
+                container.appendChild(heart);
+                
+                // Hapus hati dari DOM setelah animasi selesai (10 detik agar aman)
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
